@@ -1,5 +1,21 @@
-// Game JS ////   var targetNumber = 53;
+//
+$(document).ready(function () {
+  var targetNumber = 0;
 
+
+  function getRandomNumber(max) {
+    targetNumber = Math.floor(Math.random() * Math.floor(max));
+    return targetNumber;
+  }
+  getRandomNumber(119);
+
+  if (targetNumber < 19) { getRandomNumber(119) }
+
+  console.log(targetNumber);
+
+  $("#number-to-guess").text(targetNumber);
+
+  var counter = 0;
 
   // Now for the hard part. Creating multiple crystals each with their own unique number value.
 
@@ -28,7 +44,7 @@
   }
 
   // This time, our click event applies to every single crystal on the page. Not just one.
-  $(".crystal-image").on("click", function() {
+  $(".crystal-image").on("click", function () {
 
     // Determining the crystal's value requires us to extract the value from the data attribute.
     // Using the $(this) keyword specifies that we should be extracting the crystal value of the clicked crystal.
@@ -53,3 +69,4 @@
     }
 
   });
+});
