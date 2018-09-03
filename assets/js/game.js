@@ -1,26 +1,49 @@
 //
 $(document).ready(function () {
   var targetNumber = 0;
+  var wins = 0;
+  var loses = 0;
+  var numberOptions = [];
 
 
   function getRandomNumber(max) {
     targetNumber = Math.floor(Math.random() * Math.floor(max));
     return targetNumber;
   }
-  getRandomNumber(119);
 
-  if (targetNumber < 19) { getRandomNumber(119) }
+  function displayStats() {
+    counter = 0;
+    targetNumber = 0;
+    getRandomNumber(120);
+    checktargetNumber(targetNumber);
+    getnumberOptions()
+    $("#number-to-guess").text(targetNumber);
+    $('#number-wins').text(wins);
+    $('#number-loses').text(loses);
+    $('#score').text(' ');
+  }
+  getRandomNumber(120);
+  checktargetNumber(targetNumber);
+  getnumberOptions()
 
-  console.log(targetNumber);
+  function checktargetNumber(targetNumber) {
+    if (targetNumber < 19) { getRandomNumber(120) }
+  }
 
   $("#number-to-guess").text(targetNumber);
 
   var counter = 0;
 
-  // Now for the hard part. Creating multiple crystals each with their own unique number value.
-
   // We begin by expanding our array to include four options.
-  var numberOptions = [10, 5, 3, 7];
+  function getnumberOptions() {
+    for (var k = 0; k < 4; k++) {
+      var num = Math.floor(Math.random() * Math.floor(12));
+      if (num == 0) { num = Math.floor(Math.random() * Math.floor(12)); }
+      numberOptions.push(num);
+    }
+  }
+
+  // Now for the hard part. Creating multiple crystals each with their own unique number value.
 
   // Next we create a for loop to create crystals for every numberOption.
   for (var i = 0; i < numberOptions.length; i++) {
@@ -58,14 +81,20 @@ $(document).ready(function () {
     counter += crystalValue;
 
     // All of the same game win-lose logic applies. So the rest remains unchanged.
-    alert("New score: " + counter);
+    // alert("New score: " + counter);
+    $('#score').text(counter);
 
     if (counter === targetNumber) {
-      alert("You win!");
+      wins++;
+      displayStats();
+      alert("You Win!");
+
     }
 
     else if (counter >= targetNumber) {
-      alert("You lose!!");
+      loses++
+      displayStats();
+      alert("You Lose!");
     }
 
   });
