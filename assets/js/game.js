@@ -6,6 +6,7 @@ $(document).ready(function () {
   var numberOptions = [];
 
 
+
   function getRandomNumber(max) {
     targetNumber = Math.floor(Math.random() * Math.floor(max));
     return targetNumber;
@@ -40,12 +41,30 @@ $(document).ready(function () {
   function getnumberOptions() {
     for (var k = 0; k < 4; k++) {
       var num = Math.floor(Math.random() * Math.floor(12));
-      var a = numberOptions.includes(num);
-      if (num === 0 || a != -1) { num = Math.floor(Math.random() * Math.floor(12)); }
+      if (num == 0 | numberOptions.indexOf(num) != -1) { num = Math.floor(Math.random() * Math.floor(12)); }
       numberOptions.push(num);
     }
+    // numberOptions = removeDuplicates(numberOptions);
     console.log(numberOptions);
   }
+
+  function removeDuplicates(array) {
+    var newArray = [];                                  // new array to hold non-duplicates
+    newArray[0] = array[0];
+    //first value cannot be a duplicate, so automatically set it here
+    for (var i = 0; i < array.length; i++) {
+      inArray = false;                                // start with assumption that it is not a duplicate
+      for (var j = 0; j < newArray.length; j++) {
+        if (newArray[j] === array[i]) {             //check if it is a duplicate 
+          inArray = true;                         //flag it as true
+        }
+      }
+      if (!inArray) { newArray.push(array[i]) }
+      //if its not a duplicate, add it to the new array
+    }
+    return newArray;
+  }
+
 
   // Now for the hard part. Creating multiple crystals each with their own unique number value.
 
