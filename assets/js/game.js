@@ -11,9 +11,10 @@ $(document).ready(function () {
     return targetNumber;
   }
 
-  function displayStats() {
+  function displayStats(message) {
     counter = 0;
     targetNumber = 0;
+    numberOptions = [];
     getRandomNumber(120);
     checktargetNumber(targetNumber);
     getnumberOptions()
@@ -21,6 +22,7 @@ $(document).ready(function () {
     $('#number-wins').text(wins);
     $('#number-loses').text(loses);
     $('#score').text(' ');
+    alert(message);
   }
   getRandomNumber(120);
   checktargetNumber(targetNumber);
@@ -38,9 +40,11 @@ $(document).ready(function () {
   function getnumberOptions() {
     for (var k = 0; k < 4; k++) {
       var num = Math.floor(Math.random() * Math.floor(12));
-      if (num == 0) { num = Math.floor(Math.random() * Math.floor(12)); }
+      var a = numberOptions.includes(num);
+      if (num === 0 || a != -1) { num = Math.floor(Math.random() * Math.floor(12)); }
       numberOptions.push(num);
     }
+    console.log(numberOptions);
   }
 
   // Now for the hard part. Creating multiple crystals each with their own unique number value.
@@ -86,15 +90,15 @@ $(document).ready(function () {
 
     if (counter === targetNumber) {
       wins++;
-      displayStats();
-      alert("You Win!");
+      var message = "You Win!";
+      displayStats(message);
 
     }
 
     else if (counter >= targetNumber) {
-      loses++
-      displayStats();
-      alert("You Lose!");
+      loses++;
+      var message = "You Lose!";
+      displayStats(message);
     }
 
   });
