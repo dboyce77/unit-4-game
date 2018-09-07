@@ -23,7 +23,7 @@ $(document).ready(function () {
     $('#number-wins').text(wins);
     $('#number-loses').text(loses);
     $('#score').text(' ');
-    alert(message);
+    // alert(message);
   }
   getRandomNumber(120);
   checktargetNumber(targetNumber);
@@ -45,25 +45,27 @@ $(document).ready(function () {
       numberOptions.push(num);
     }
     // numberOptions = removeDuplicates(numberOptions);
-    console.log(numberOptions);
+    // console.log(numberOptions);
   }
 
-  function removeDuplicates(array) {
-    var newArray = [];                                  // new array to hold non-duplicates
-    newArray[0] = array[0];
-    //first value cannot be a duplicate, so automatically set it here
-    for (var i = 0; i < array.length; i++) {
-      inArray = false;                                // start with assumption that it is not a duplicate
-      for (var j = 0; j < newArray.length; j++) {
-        if (newArray[j] === array[i]) {             //check if it is a duplicate 
-          inArray = true;                         //flag it as true
-        }
-      }
-      if (!inArray) { newArray.push(array[i]) }
-      //if its not a duplicate, add it to the new array
-    }
-    return newArray;
-  }
+  // function removeDuplicates(array) {
+  //   var newArray = [];                                  // new array to hold non-duplicates
+  //   newArray[0] = array[0];
+  //   //first value cannot be a duplicate, so automatically set it here
+  //   for (var i = 0; i < array.length; i++) {
+  //     inArray = false;                                // start with assumption that it is not a duplicate
+  //     for (var j = 0; j < newArray.length; j++) {
+  //       if (newArray[j] === array[i]) {             //check if it is a duplicate 
+  //         // newArray.push(getRandomNumber(12));
+  //         inArray = true;
+  //         // if (newArray.length === 4) { break; }                         //flag it as true
+  //       }
+  //     }
+  //     if (!inArray) { newArray.push(array[i]) }
+  //     //if its not a duplicate, add it to the new array
+  //   }
+  //   return newArray;
+  // }
 
 
   // Now for the hard part. Creating multiple crystals each with their own unique number value.
@@ -109,15 +111,13 @@ $(document).ready(function () {
 
     if (counter === targetNumber) {
       wins++;
-      var message = "You Win!";
-      displayStats(message);
+      displayStats();
 
     }
 
     else if (counter >= targetNumber) {
       loses++;
-      var message = "You Lose!";
-      displayStats(message);
+      displayStats();
     }
 
   });
